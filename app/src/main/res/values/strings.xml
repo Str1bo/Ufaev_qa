@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">StampPDF</string>
+    <string name="select_document">Выбрать документ</string>
+    <string name="select_stamp">Выбрать печать</string>
+    <string name="transparency">Прозрачность</string>
+    <string name="position">Позиция</string>
+    <string name="save_pdf">Сохранить PDF</string>
+    <string name="document_pdf">PDF документ</string>
+    <string name="document_word">Word документ</string>
+    <string name="stamp_image">Изображение печати</string>
+    <string name="overlay_mode">Режим наложения</string>
+    <string name="text_mode">Текстовый режим</string>
+    <string name="image_mode">Режим изображения</string>
+    <string name="processing">Обработка...</string>
+    <string name="success">Успешно сохранено</string>
+    <string name="error">Ошибка</string>
+    <string name="select_position">Выберите позицию печати</string>
+    <string name="top_left">Верхний левый</string>
+    <string name="top_right">Верхний правый</string>
+    <string name="bottom_left">Нижний левый</string>
+    <string name="bottom_right">Нижний правый</string>
+    <string name="center">Центр</string>
+    <string name="custom">Пользовательская</string>
+</resources>
