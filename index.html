@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stamp PDF - Наложение печатей на документы</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/8.5.0/docx.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-stamp"></i> Stamp PDF</h1>
+            <p>Наложение печатей на PDF и Word документы</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Document Upload Section -->
+            <section class="upload-section">
+                <div class="upload-card">
+                    <h2><i class="fas fa-file-upload"></i> Загрузка документа</h2>
+                    <div class="upload-area" id="documentUpload">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Перетащите PDF или Word документ сюда</p>
+                        <p>или</p>
+                        <button class="btn btn-primary" onclick="document.getElementById('documentInput').click()">
+                            Выбрать файл
+                        </button>
+                        <input type="file" id="documentInput" accept=".pdf,.docx,.doc" style="display: none;">
+                    </div>
+                    <div class="file-info" id="documentInfo" style="display: none;">
+                        <p><i class="fas fa-file"></i> <span id="documentName"></span></p>
+                        <button class="btn btn-small btn-danger" onclick="removeDocument()">
+                            <i class="fas fa-trash"></i> Удалить
+                        </button>
+                    </div>
+                </div>
+
+                <div class="upload-card">
+                    <h2><i class="fas fa-stamp"></i> Загрузка печати</h2>
+                    <div class="upload-area" id="stampUpload">
+                        <i class="fas fa-image"></i>
+                        <p>Перетащите изображение печати сюда</p>
+                        <p>или</p>
+                        <button class="btn btn-primary" onclick="document.getElementById('stampInput').click()">
+                            Выбрать изображение
+                        </button>
+                        <input type="file" id="stampInput" accept="image/*" style="display: none;">
+                    </div>
+                    <div class="file-info" id="stampInfo" style="display: none;">
+                        <div class="stamp-preview">
+                            <img id="stampPreview" alt="Предварительный просмотр печати">
+                        </div>
+                        <button class="btn btn-small btn-danger" onclick="removeStamp()">
+                            <i class="fas fa-trash"></i> Удалить
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section class="settings-section">
+                <div class="settings-card">
+                    <h2><i class="fas fa-cog"></i> Настройки печати</h2>
+                    
+                    <div class="setting-group">
+                        <label for="transparency">Прозрачность: <span id="transparencyValue">50%</span></label>
+                        <input type="range" id="transparency" min="0" max="100" value="50" class="slider">
+                    </div>
+
+                    <div class="setting-group">
+                        <label>Позиция печати:</label>
+                        <div class="position-buttons">
+                            <button class="position-btn active" data-position="top-left">
+                                <i class="fas fa-arrow-up"></i><i class="fas fa-arrow-left"></i>
+                                Верхний левый
+                            </button>
+                            <button class="position-btn" data-position="top-right">
+                                <i class="fas fa-arrow-up"></i><i class="fas fa-arrow-right"></i>
+                                Верхний правый
+                            </button>
+                            <button class="position-btn" data-position="center">
+                                <i class="fas fa-crosshairs"></i>
+                                Центр
+                            </button>
+                            <button class="position-btn" data-position="bottom-left">
+                                <i class="fas fa-arrow-down"></i><i class="fas fa-arrow-left"></i>
+                                Нижний левый
+                            </button>
+                            <button class="position-btn" data-position="bottom-right">
+                                <i class="fas fa-arrow-down"></i><i class="fas fa-arrow-right"></i>
+                                Нижний правый
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="setting-group">
+                        <label for="stampSize">Размер печати: <span id="sizeValue">30%</span></label>
+                        <input type="range" id="stampSize" min="10" max="100" value="30" class="slider">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Preview Section -->
+            <section class="preview-section">
+                <div class="preview-card">
+                    <h2><i class="fas fa-eye"></i> Предварительный просмотр</h2>
+                    <div class="preview-container">
+                        <canvas id="previewCanvas" width="800" height="600"></canvas>
+                    </div>
+                    <div class="preview-controls">
+                        <button class="btn btn-secondary" onclick="updatePreview()">
+                            <i class="fas fa-sync-alt"></i> Обновить
+                        </button>
+                        <button class="btn btn-primary" onclick="downloadPDF()" id="downloadBtn" disabled>
+                            <i class="fas fa-download"></i> Скачать PDF
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+            <div class="loading-spinner">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Обработка документа...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

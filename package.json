@@ -1,0 +1,28 @@
+{
+  "name": "stamp-pdf-web",
+  "version": "1.0.0",
+  "description": "Веб-приложение для наложения печатей на PDF и Word документы",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "dev": "python -m http.server 8000",
+    "build": "echo 'No build process needed for static files'"
+  },
+  "keywords": [
+    "pdf",
+    "stamp",
+    "watermark",
+    "document",
+    "web",
+    "javascript"
+  ],
+  "author": "Stamp PDF Team",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {},
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
