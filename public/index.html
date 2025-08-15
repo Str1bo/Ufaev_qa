@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наложение печати на документы</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-stamp"></i>
+                <h1>Наложение печати</h1>
+            </div>
+            <p class="subtitle">Загрузите документ и печать для создания профессионального результата</p>
+        </header>
+
+        <main class="main-content">
+            <div class="upload-section">
+                <div class="upload-card">
+                    <div class="upload-area" id="documentUpload">
+                        <i class="fas fa-file-pdf"></i>
+                        <h3>Загрузить документ</h3>
+                        <p>PDF или Word документ</p>
+                        <input type="file" id="documentInput" accept=".pdf,.doc,.docx" hidden>
+                        <button class="upload-btn" onclick="document.getElementById('documentInput').click()">
+                            Выбрать файл
+                        </button>
+                    </div>
+                    <div class="file-info" id="documentInfo" style="display: none;">
+                        <div class="file-preview">
+                            <i class="fas fa-file-pdf"></i>
+                            <span id="documentName"></span>
+                        </div>
+                        <button class="remove-btn" onclick="removeDocument()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="upload-card">
+                    <div class="upload-area" id="stampUpload">
+                        <i class="fas fa-image"></i>
+                        <h3>Загрузить печать</h3>
+                        <p>JPG или PNG изображение</p>
+                        <input type="file" id="stampInput" accept=".jpg,.jpeg,.png" hidden>
+                        <button class="upload-btn" onclick="document.getElementById('stampInput').click()">
+                            Выбрать файл
+                        </button>
+                    </div>
+                    <div class="file-info" id="stampInfo" style="display: none;">
+                        <div class="file-preview">
+                            <img id="stampPreview" alt="Печать">
+                            <span id="stampName"></span>
+                        </div>
+                        <button class="remove-btn" onclick="removeStamp()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section" id="settingsSection" style="display: none;">
+                <h2>Настройки печати</h2>
+                
+                <div class="settings-grid">
+                    <div class="setting-group">
+                        <label for="positionMode">Позиция печати:</label>
+                        <select id="positionMode" onchange="updatePositionMode()">
+                            <option value="custom">Пользовательская</option>
+                            <option value="center">По центру</option>
+                            <option value="top-left">Верхний левый угол</option>
+                            <option value="top-right">Верхний правый угол</option>
+                            <option value="bottom-left">Нижний левый угол</option>
+                            <option value="bottom-right">Нижний правый угол</option>
+                        </select>
+                    </div>
+
+                    <div class="setting-group" id="customPosition">
+                        <label for="xPosition">X координата (пиксели):</label>
+                        <input type="number" id="xPosition" value="100" min="0">
+                    </div>
+
+                    <div class="setting-group" id="customPosition">
+                        <label for="yPosition">Y координата (пиксели):</label>
+                        <input type="number" id="yPosition" value="100" min="0">
+                    </div>
+
+                    <div class="setting-group">
+                        <label for="opacity">Прозрачность:</label>
+                        <div class="slider-container">
+                            <input type="range" id="opacity" min="0.1" max="1" step="0.1" value="0.8">
+                            <span id="opacityValue">80%</span>
+                        </div>
+                    </div>
+
+                    <div class="setting-group">
+                        <label for="pageNumber">Номер страницы:</label>
+                        <input type="number" id="pageNumber" value="1" min="1">
+                    </div>
+                </div>
+
+                <div class="preview-section">
+                    <h3>Предварительный просмотр</h3>
+                    <div class="preview-container">
+                        <div class="preview-document" id="previewDocument">
+                            <div class="preview-stamp" id="previewStamp"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-secondary" onclick="resetSettings()">
+                        <i class="fas fa-undo"></i>
+                        Сбросить
+                    </button>
+                    <button class="btn btn-primary" onclick="processDocument()" id="processBtn">
+                        <i class="fas fa-magic"></i>
+                        Обработать документ
+                    </button>
+                </div>
+            </div>
+
+            <div class="loading-section" id="loadingSection" style="display: none;">
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+                <h3>Обработка документа...</h3>
+                <p>Пожалуйста, подождите</p>
+            </div>
+        </main>
+
+        <div class="notification" id="notification"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
