@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Stamp Printer</string>
+    <string name="select_document">Выбрать документ</string>
+    <string name="select_stamp">Выбрать печать</string>
+    <string name="position_stamp">Позиция печати</string>
+    <string name="transparency">Прозрачность</string>
+    <string name="blend_mode">Режим наложения</string>
+    <string name="save_pdf">Сохранить PDF</string>
+    <string name="document_placeholder">Выберите PDF или Word документ</string>
+    <string name="stamp_placeholder">Выберите изображение печати</string>
+    <string name="processing">Обработка...</string>
+    <string name="saved_successfully">Сохранено успешно</string>
+    <string name="error_occurred">Произошла ошибка</string>
+    <string name="normal">Обычный</string>
+    <string name="multiply">Умножение</string>
+    <string name="screen">Экран</string>
+    <string name="overlay">Наложение</string>
+    <string name="darken">Затемнение</string>
+    <string name="lighten">Осветление</string>
+    <string name="permission_required">Требуется разрешение</string>
+    <string name="permission_explanation">Приложению нужны разрешения для работы с файлами</string>
+    <string name="grant_permission">Предоставить разрешение</string>
+    <string name="cancel">Отмена</string>
+    <string name="ok">ОК</string>
+</resources>
